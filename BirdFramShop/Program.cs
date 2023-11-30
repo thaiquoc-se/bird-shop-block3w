@@ -18,6 +18,12 @@ builder.Services.AddScoped<IBirdService, BirdService>();
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IUserService, UserService>();
+
+builder.Services.AddScoped<IWardRepository, WardRepository>();
+builder.Services.AddScoped<IWardService, WardService>();
+builder.Services.AddScoped<IDistrictRepository, DistrictRepository>();
+builder.Services.AddScoped<IDistrictService, DistrictService>();
+
 builder.Services.AddScoped(typeof(IBaseDAO<,>), typeof(BaseDAO<,>));
 builder.Services.AddRazorPages().AddRazorPagesOptions(options => { options.Conventions.AddPageRoute("/HomePage", ""); });
 var app = builder.Build();

@@ -17,5 +17,7 @@ namespace Services
         void Update(TblUser user);
         Task Delete(int id);
         TblUser checkLogin(string userName, string password);
+
+        Task<TblUser> checkUserName(string userName);
     }
 }

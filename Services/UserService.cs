@@ -37,6 +37,12 @@ namespace Services
             }
         }
 
+        public async Task<TblUser> checkUserName(string userName)
+        {
+                var check = await _unitOfWork.User.GetAll().Where(u => u.UserName.Equals(userName)).FirstOrDefaultAsync();
+                return check;
+        }
+
         public async Task Delete(int id) => await _unitOfWork.User.Remove(id);
         
 

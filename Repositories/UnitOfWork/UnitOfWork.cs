@@ -12,19 +12,31 @@ namespace Repositories.UnitOfWork
         IBirdRepository Products { get; }
 
         IUserRepository User { get; }
+
+        IWardRepository Wards { get; }
+
+        IDistrictRepository Districts { get; }
     }
-    public class UnitOfWork : IUnitOfWork
-    {
-        public IBirdRepository Products { get; private set; }
-
-        public IUserRepository User { get; private set; }
-
-        public UnitOfWork(IBirdRepository birdRepository, IUserRepository userRepository)
+        public class UnitOfWork : IUnitOfWork
         {
-            Products = birdRepository;
-            User = userRepository;
-        }
+            public IBirdRepository Products { get; private set; }
 
-        
+            public IUserRepository User { get; private set; }
+
+            public IWardRepository Wards { get; private set; }
+
+            public IDistrictRepository Districts { get; private set; }
+
+            public UnitOfWork(IBirdRepository birdRepository, IUserRepository userRepository
+                            , IWardRepository wardRepository, IDistrictRepository districtRepository)
+            {
+                Products = birdRepository;
+                User = userRepository;
+                Wards = wardRepository;
+                Districts = districtRepository;
+            }
+
+
+        }
     }
-}
+
