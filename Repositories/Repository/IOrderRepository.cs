@@ -5,10 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DataAccessLayer.DAOs
+namespace Repositories.Repository
 {
-    public class UserDAO : BaseDAO<TblUser, int>, IBaseDAO<TblUser, int>
+    public interface IOrderRepository : IBaseRepository<TblOrder,int>
     {
     }
-
 }

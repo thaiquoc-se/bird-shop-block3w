@@ -59,13 +59,14 @@ namespace DataAccessLayer
                 return false;
             }
             dbSet.Remove(entity);
+            await _context.SaveChangesAsync();
             return true;
         }
 
         public void Update(T entity)
         {
-            _context.Set<T>().Attach(entity);
-            _context.Entry<T>(entity).State = EntityState.Modified;
+            _context.Update<T>(entity);
+            _context.SaveChanges();
         }
     }
 }

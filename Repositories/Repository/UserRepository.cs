@@ -24,5 +24,27 @@ namespace Repositories.Repository
         {
             return GetAll().Where(u => u.UserId == id).FirstOrDefaultAsync()!;
         }
+
+        public override async void Update(TblUser entity)
+        {
+            var _user = await base.GetByID(entity.UserId);
+            {
+                if(_user != null)
+                {
+                    _user.UserName = entity.UserName;
+                    _user.Email = entity.Email;
+                    _user.UserAddress = entity.UserAddress;
+                    _user.FullName = entity.FullName;
+                    _user.DistrictId = entity.DistrictId;
+                    _user.WardId = entity.WardId;
+                    _user.Pass = entity.Pass;
+                    _user.UserStatus = true;
+                    _user.Image = entity.Image;
+                    _user.Phone = entity.Phone;
+                    _user.Image = entity.Image;
+                    base.Update(_user);
+                }
+            }       
+        }
     }
 }

@@ -7,8 +7,7 @@ using System.Threading.Tasks;
 
 namespace DataAccessLayer.DAOs
 {
-    public class UserDAO : BaseDAO<TblUser, int>, IBaseDAO<TblUser, int>
+    public class OrderDAO : BaseDAO<TblOrder, int>, IBaseDAO<TblOrder, int>
     {
     }
-
 }

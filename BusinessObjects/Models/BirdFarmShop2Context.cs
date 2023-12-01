@@ -33,6 +33,7 @@ namespace BusinessObjects.Models
             if (!optionsBuilder.IsConfigured)
             {
                 optionsBuilder.UseSqlServer(GetConnectionString());
+                optionsBuilder.EnableSensitiveDataLogging();
             }
         }
 

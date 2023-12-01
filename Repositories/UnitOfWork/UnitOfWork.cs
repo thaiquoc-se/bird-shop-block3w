@@ -16,6 +16,8 @@ namespace Repositories.UnitOfWork
         IWardRepository Wards { get; }
 
         IDistrictRepository Districts { get; }
+
+        IOrderRepository Order { get; }
     }
         public class UnitOfWork : IUnitOfWork
         {
@@ -27,13 +29,18 @@ namespace Repositories.UnitOfWork
 
             public IDistrictRepository Districts { get; private set; }
 
-            public UnitOfWork(IBirdRepository birdRepository, IUserRepository userRepository
-                            , IWardRepository wardRepository, IDistrictRepository districtRepository)
+            public IOrderRepository Order { get;private set; }
+
+        public UnitOfWork(IBirdRepository birdRepository, IUserRepository userRepository
+                            , IWardRepository wardRepository, IDistrictRepository districtRepository
+                            ,IOrderRepository orderRepository
+            )
             {
                 Products = birdRepository;
                 User = userRepository;
                 Wards = wardRepository;
                 Districts = districtRepository;
+                Order = orderRepository;
             }
 
 
