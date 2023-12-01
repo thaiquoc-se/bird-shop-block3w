@@ -10,7 +10,7 @@ namespace Services
 {
     public interface IUserService
     {
-        Task<List<TblUser>> GetAllUsers();
+        List<TblUser> GetAllUsers();
         TblUser GetUserByEmail(string email);
         Task<TblUser> GetUserByID(int id);
         Task AddNew(TblUser user);

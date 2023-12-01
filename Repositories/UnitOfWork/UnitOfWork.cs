@@ -1,4 +1,6 @@
-﻿using Repositories.Repository;
+﻿using BusinessObjects.Models;
+using Microsoft.EntityFrameworkCore;
+using Repositories.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,6 +20,11 @@ namespace Repositories.UnitOfWork
         IDistrictRepository Districts { get; }
 
         IOrderRepository Order { get; }
+
+        IOrderDetailRepository OrderDetail { get; }
+        void Update<T>(T entity) where T : class;
+
+        void SaveChanges();
     }
         public class UnitOfWork : IUnitOfWork
         {
@@ -31,9 +38,14 @@ namespace Repositories.UnitOfWork
 
             public IOrderRepository Order { get;private set; }
 
+            public IOrderDetailRepository OrderDetail { get; private set; }
+
+            private readonly BirdFarmShop2Context _context;
+
         public UnitOfWork(IBirdRepository birdRepository, IUserRepository userRepository
                             , IWardRepository wardRepository, IDistrictRepository districtRepository
-                            ,IOrderRepository orderRepository
+                            ,IOrderRepository orderRepository,
+                            IOrderDetailRepository orderDetailRepository
             )
             {
                 Products = birdRepository;
@@ -41,9 +53,17 @@ namespace Repositories.UnitOfWork
                 Wards = wardRepository;
                 Districts = districtRepository;
                 Order = orderRepository;
-            }
-
-
+                OrderDetail = orderDetailRepository;
+                _context = new BirdFarmShop2Context();
         }
+
+        public void SaveChanges() => _context.SaveChanges();
+        public void Update<T>(T entity) where T : class
+        {
+            _context.Set<T>().Attach(entity);
+            _context.Entry(entity).State = EntityState.Modified;
+        }
+
+    }
     }
 

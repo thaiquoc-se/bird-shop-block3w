@@ -46,7 +46,7 @@ namespace Services
         public async Task Delete(int id) => await _unitOfWork.User.Remove(id);
         
 
-        public async Task<List<TblUser>> GetAllUsers() => await _unitOfWork.User.GetAll().ToListAsync();
+        public List<TblUser> GetAllUsers() =>  _unitOfWork.User.GetAll().ToList();
         
 
         public TblUser GetUserByEmail(string email)

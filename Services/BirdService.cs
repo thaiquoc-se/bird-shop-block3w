@@ -1,4 +1,5 @@
 ﻿using BusinessObjects.Models;
+using Microsoft.EntityFrameworkCore;
 using Repositories.Repository;
 using Repositories.UnitOfWork;
 using System;
@@ -23,7 +24,7 @@ namespace Services
         public List<Bird> GetAllBirds() => _unitOfWork.Products.GetAll().ToList();
         
 
-        public Task<Bird> GetBirdByID(int id) => _unitOfWork.Products.GetByID(id);
+        public async Task<Bird> GetBirdByID(int id) => await _unitOfWork.Products.Find(b => b.BirdId == id,includes: b => b.User).SingleOrDefaultAsync();
 
 
         public void Update(Bird bird) => _unitOfWork.Products.Update(bird);
